@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.time.{LocalDate, ZoneId}
 import java.time.format.DateTimeFormatter
 import scala.util.{Failure, Success, Try}
-
+//checlpoint1-4
 case class Purchase(orderdate: LocalDate,
                      shipdate: LocalDate,
                      shipmode: String,
@@ -110,11 +110,6 @@ class ChildActor extends Actor {
         fields(13).toInt,
         fields(14).toDouble,
         fields(15).toDouble
-//        Try(fields(12).toDouble).getOrElse(0.0),
-//        Try(fields(13).toDouble).getOrElse(0.0),
-//        Try(fields(14).toInt).getOrElse(0),
-//        Try(fields(15).toDouble).getOrElse(0.0),
-//        Try(fields(16).toDouble).getOrElse(0.0)
     )
       result match {
         case Success(data) =>

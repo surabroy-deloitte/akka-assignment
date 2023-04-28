@@ -5,10 +5,10 @@ import akka.actor.{ActorRef, ActorSystem}
 import akka.pattern.ask
 import akka.stream.scaladsl.{FileIO, Flow, Framing, Source}
 import akka.util.{ByteString, Timeout}
-import org.scalatest.time.SpanSugar.convertIntToGrainOfTime
 
 import java.nio.file.Paths
 import scala.concurrent.ExecutionContext
+import scala.concurrent.duration.DurationInt
 
 object checkpoint8 extends App {
   case class ValidationFailureRecord(errorMessage: String, columnName: String, data: String)

@@ -10,6 +10,7 @@ import akka.stream.scaladsl.{FileIO, Flow, Framing, Source}
 import akka.util.ByteString
 import com.typesafe.config.ConfigFactory
 
+
 import java.nio.file.Paths
 import scala.concurrent.Future
 
@@ -18,6 +19,7 @@ object checkpoint7 extends App {
   val filepath = applicationConf.getString("app.filepath") //getting file path from configuration file
 
   implicit val system = ActorSystem("FileReaderSystem")
+
 
   val categoryFilter = applicationConf.getString("app.categoryFilter") //getting category filter from configuration file
   val FinancialYear = applicationConf.getString("app.year") //getting category filter from configuration file
@@ -63,7 +65,7 @@ object checkpoint7 extends App {
     .via(Framing.delimiter(ByteString("\n"), maximumFrameLength = 256, allowTruncation = true))
     .filter(record => {
       val fields = record.utf8String.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)").map(_.trim)
-      fields(2).toInt >= BulkQuantityValue
+      fields(2).toInt >= BulkQuantityValue.toInt
     })
 
   // Define the aggregator flow
